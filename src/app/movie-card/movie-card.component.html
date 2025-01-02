@@ -1,3 +1,5 @@
+
+<div style="display: flex;">
 <!-- *ngFor used to display all returned movies -->
 <mat-card *ngFor="let movie of movies; let i=index;">
     <mat-dialog-content>
@@ -5,3 +7,4 @@
         <mat-card-subtitle><img src={{movie.ImagePath}} /></mat-card-subtitle>
     </mat-dialog-content>
 </mat-card>
+</div>
