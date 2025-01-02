@@ -5,7 +5,7 @@ import { Observable, throwError, catchError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
-const apiUrl = 'https://myflix-client-oj-3c90e41c0141.herokuapp.com';
+const apiUrl = 'https://myflix-client-oj-3c90e41c0141.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +50,7 @@ export class FetchApiDataService {
   // Get one movie
   public getOneMovie(title: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get('${apiUrl}/movies/${title}', {
+    return this.http.get(`${apiUrl}/movies/${title}`, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer' + token,
