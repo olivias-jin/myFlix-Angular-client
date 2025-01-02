@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-login-form',
   standalone: false,
-
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
@@ -22,32 +21,32 @@ export class UserLoginFormComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   loginUser(): void {
+    this.fetchApiData.userlogin(this.userData).subscribe(
+      (result) => {
+        // store the user data and token in localstorage
+        localStorage.setItem('user', result.user.Username);
+        localStorage.setItem('token', result.token);
 
-    this.fetchApiData.userlogin(this.userData).subscribe((result) => {
-      // store the user data and token in localstorage
-      localStorage.setItem('user', result.user.Username);
-      localStorage.setItem('token', result.token);
+        // Close the dialog
+        this.dialogRef.close();
 
-      // Close the dialog
-      this.dialogRef.close();
+        // Login success message
+        this.snackBar.open(`Login successful! Hello ${result.user.Username}`, 'OK', {
+          duration: 2000,
+        });
 
-      // Login success message
-      this.snackBar.open(`Login successful! Hello ${result.user.Username}`, 'OK', {
-        duration: 2000
-      });
-
-      // Navigate to movie page
-      this.router.navigate(['movies']);
-    },
-      (error) =>
+        // Navigate to movie page
+        this.router.navigate(['movies']);
+      },
+      (error) => {
         // Login fail message
         this.snackBar.open('Login Failed', 'OK', {
-          duration: 2000
-        })
-
-    }
+          duration: 2000,
+        });
+      }
+    );
+  }
 }
