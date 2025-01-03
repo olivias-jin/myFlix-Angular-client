@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-movie-card',
@@ -10,11 +12,20 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 export class MovieCardComponent {
   movies: any[] = [];
-  constructor(public fetchApiData: FetchApiDataService) { }
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    private router: Router
+  ) { }
+
+  goToUserProfile(): void {
+    this.router.navigate(['/user-profile']);
+  }
 
   ngOnInit(): void {
     this.getMovies();
   }
+
+  // used to fetch the movies from FetchApiDataService 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -22,4 +33,16 @@ export class MovieCardComponent {
       return this.movies;
     });
   }
+
+  // // Navigate to the Welcome view
+  // goToWelcome() {
+  //   this.router.navigate(['/']);
+  // }
+
+  // // Navigate to movie page
+  // goToProfile(username:string){
+  //   this.router.navigate(['/user-profile' ]);
+  // }
+  
+
 }
