@@ -21,6 +21,10 @@ export class UserLoginFormComponent implements OnInit {
     private router: Router
   ) { }
 
+  goToMovieCard(): void {
+    this.router.navigate(['/movie-card']);
+  }
+  
   ngOnInit(): void { }
 
   loginUser(): void {
