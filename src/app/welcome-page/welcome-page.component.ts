@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent implements OnInit {
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private router: Router
+  ) { }
   ngOnInit(): void {
   }
   openUserRegistrationDialog(): void {
@@ -19,7 +21,7 @@ export class WelcomePageComponent implements OnInit {
       width: '280px'
     });
   }
-  openUserLoginDialog(): void{
+  openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'
     });

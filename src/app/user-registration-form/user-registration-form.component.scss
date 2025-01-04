@@ -1,0 +1,61 @@
+mat-card {
+    max-width: 400px auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #ffffff;
+
+    mat-card-header {
+        text-align: center;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 10px;
+
+        mat-card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    }
+
+    mat-card-content {
+        margin-top: 20px;
+
+        form {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        mat-form-field {
+            width: 100%;
+            font-size: 1rem;
+
+            input {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    mat-card-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+
+            &:hover {
+                background-color: #2980b9; // 호버 시 색상 변화
+            }
+
+            &:active {
+                transform: scale(0.95); //클릭 시 버튼 눌리는 효과
+            }
+        }
+    }
+}
