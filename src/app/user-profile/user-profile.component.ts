@@ -3,6 +3,8 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { response } from 'express';
 import { error } from 'console';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -26,7 +28,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private fetchApiData: FetchApiDataService,
-    private router: Router) { }
+    private router: Router,
+    public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -51,14 +54,14 @@ export class UserProfileComponent implements OnInit {
       (movies) => {
         this.movies = movies;
         console.log('Movies fetched:', this.movies);
-        this.loadFavoriteMovies(); // Load favorite movies after movies are fetched
+        // this.loadFavoriteMovies(); // Load favorite movies after movies are fetched
       },
       (error) => {
         console.error('Error fetching movies', error);
       }
     );
   }
-  
+
   // Update user profile
   updateUserProfile(): void {
     const username = localStorage.getItem('user');
@@ -66,61 +69,68 @@ export class UserProfileComponent implements OnInit {
     if (username) {
       this.fetchApiData.editUser(username, this.updatedUserData).subscribe(
         (response) => {
+          alert('User profile updated successfully!');
           console.log('User profile updated successfully!', response);
         },
         (error) => {
+          alert('Error updating user profile');
           console.error('Error updating user profile', error);
         });
     } else {
-      console.error('User is not logged in!')
+      alert('User is not logged in!');
+      console.error('User is not logged in!');
     }
   }
 
   // Navigate to Movie Card
-  goToMovieCard(): void {
-    this.router.navigate(['/movie-card']);
-  }
-
-  // Navigate to Welcome Page (Log Out)
-  goToWelcomePage(): void {
-    this.router.navigate(['/welcome-page']);
+  Cancel(): void {
+    this.dialog.closeAll();
   }
 
   // Log Out 
   logout(): void {
-    localStorage.removeItem('authToken');
-    this.router.navigate(['/welcome-page']);
-  }
-
-  // 로그인 상태 확인 (토큰이 있으면 로그인 상태로 간주)
-  isAuthenticated(): boolean {
-    return localStorage.getItem('authToken') !== null;
+    localStorage.removeItem('user');
+    alert('You have been logged out successfully.');
+    this.router.navigate(['/welcome']);
   }
 
   // Load favorite movies from localStorage
-  loadFavoriteMovies(): void {
-    const storedFavorites = localStorage.getItem('isFavorite');
-    if (storedFavorites) {
-      try {
-        this.favoriteMovies = JSON.parse(storedFavorites);
-        console.log('Favorite Movies loaded from localStorage:', this.favoriteMovies);
-      } catch (error) {
-        console.error('Error parsing favorite movies from localStorage:', error);
-      }
-    } else {
-      console.log('No favorite movies found in localStorage');
-    }
+  getfavoriteMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((res: any) => {
+      this.favoriteMovies = res.filter((movie: any) => {
+        return this.userData.favoriteMovies.includes(movie._id)
+      })
+    }, (error: any) => {
+      console.error(error);
+    });
   }
 
-    // Get details of favorite movies
-    getFavoriteMoviesDetails() {
-      console.log('Getting favorite movie details', this.favoriteMovies);
-      return this.favoriteMovies.map((movieId: number) => {
-        const movie = this.movies.find(m => m.id === movieId || m.id === Number(movieId));
-        if (!movie) {
-          console.warn(`Movie with ID ${movieId} not found`);
-        }
-        return movie; // This should return full movie details
-      }).filter(movie => movie !== undefined); // Remove any undefined values
-    }
+  // loadFavoriteMovies(): void {
+  //   const storedFavorites = localStorage.getItem('isFavorite');
+  //   if (storedFavorites) {
+  //     try {
+  //       this.favoriteMovies = JSON.parse(storedFavorites);
+  //       console.log('Favorite Movies loaded from localStorage:', this.favoriteMovies);
+  //     } catch (error) {
+  //       console.error('Error parsing favorite movies from localStorage:', error);
+  //     }
+  //   } else {
+  //     console.log('No favorite movies found in localStorage');
+  //   }
+  // }
+
+  // Get favorite movies
+  getFavoriteMoviesDetails() {
+    console.log('Getting favorite movie details', this.favoriteMovies);
+    return this.favoriteMovies.map((movieId: number) => {
+      const movie = this.movies.find(m => m.id === movieId || m.id === Number(movieId));
+      if (!movie) {
+        console.warn(`Movie with ID ${movieId} not found`);
+      }
+      return movie; // This should return full movie details
+    }).filter(movie => movie !== undefined); // Remove any undefined values
   }
+
+
+
+}

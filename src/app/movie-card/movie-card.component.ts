@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { error } from 'console';
 import { response } from 'express';
-
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { MatDateFormats } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-card',
@@ -23,6 +25,7 @@ export class MovieCardComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -39,9 +42,19 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  // Log Out 
+  logout(): void {
+    localStorage.removeItem('user');
+    alert('You have been logged out successfully.');
+    this.router.navigate(['/welcome']);
+  }
+
+ 
   // Go to User Profile View
-  goToUserProfile(): void {
-    this.router.navigate(['/user-profile']);
+  OpenUserProfile(): void {
+    this.dialog.open(UserProfileComponent, {
+      width: '280px'
+    });
   }
 
 
@@ -67,26 +80,13 @@ export class MovieCardComponent implements OnInit {
 
   toggleFavorite(movie: any): void {
     if (this.isFavorite(movie._id)) {
-
-      this.deleteFavorite(movie._id);
+      this.deleteFavorite(movie);
     }
     else {
-      this.addFavorite(movie._id);
+      this.addFavorite(movie);
     }
   }
 
-
-  // // Get favorite movies
-  // getFavoriteMovie(): void {
-  //   this.fetchApiData.getFavoriteMovie(this.userName).subscribe((resp: any) => {
-  //     (
-  //       this.favoriteMovies = resp.favoriteMovies); // Store only IDs
-  //   },
-  //     (error) => {
-  //       console.error('Error fetching favorite movies:', error);
-  //     }
-  //   );
-  // }
 
   // Add favorite movies
   addFavorite(movie: any): void {

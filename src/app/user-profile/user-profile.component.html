@@ -1,8 +1,8 @@
-<button mat-raised-button (click)="goToMovieCard()" color="primary">
-  Go Back To Movie List
-</button>
+<button mat-button (click)="logout()" color="primary">Log out</button>
 
-<button mat-raised-button *ngIf="isAuthenticated()" (click)="logout()">Log out</button>
+<button mat-button (click)="Cancel()" color="primary">
+  Cancel
+</button>
 
 <mat-card>
   <mat-card-header>
@@ -32,7 +32,6 @@
           <!-- Check if movie object exists and display its details -->
           <div *ngIf="movie">
             <div>Movie Title: {{ movie?.Title || 'N/A' }}</div>
-            <div>Release Year: {{ movie?.Year || 'N/A' }}</div>
             <div>
               <img *ngIf="movie?.ImageUrl" [src]="movie?.ImageUrl" alt="movie image">
             </div>

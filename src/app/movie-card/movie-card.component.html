@@ -1,6 +1,9 @@
-<button mat-button color="primary" [routerLink]="'/user-profile'">
+<button mat-button color="primary" (click)="logout()">Log out</button>
+
+<button mat-button color="primary" (click)="OpenUserProfile()" style="margin-right: 10px;">
     Edit Profile
 </button>
+
 
 <div style="display: flex;">
     <mat-card *ngFor="let movie of movies;" class="movie-container">
@@ -22,7 +25,7 @@
             <button mat-button color="primary" (click)="toggleInfo(movie, 'synopsis')">
                 Synopsis </button>
 
-                <button mat-icon-button (click)="toggleFavorite">
+                <button mat-icon-button (click)="toggleFavorite(movie)">
                     <mat-icon>{{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
                   </button>
 
