@@ -10,14 +10,37 @@
         </mat-card-header>
         <img src={{movie.ImagePath}} alt={{movie.Title}} class="movie-img" />
         <mat-card-actions>
-            <button mat-button color="primary">Genre </button>
-            <button mat-button color="primary">Director </button>
-            <button mat-button color="primary"> Synopsis </button>
 
-            <mat-icon>favorite_border</mat-icon>
+            <button mat-button color="primary" (click)="toggleInfo(movie, 'genre')">
+                Genre
+            </button>
+
+            <button mat-button color="primary" (click)="toggleInfo(movie, 'director')">
+                Director
+            </button>
+
+            <button mat-button color="primary" (click)="toggleInfo(movie, 'synopsis')">
+                Synopsis </button>
+
+                <button mat-icon-button (click)="toggleFavorite">
+                    <mat-icon>{{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+                  </button>
 
         </mat-card-actions>
+
+        <!--  정보가 있을 경우 표시 -->
+        <mat-card-content *ngIf="movie.showGenre">
+            <p><strong>Genre:</strong> {{ movie.Genre.Name }}</p>
+        </mat-card-content>
+
+        <mat-card-content *ngIf="movie.showDirector">
+            <p><strong>Director:</strong> {{ movie.Director.Name }}</p>
+            <p><strong>Bio:</strong> {{ movie.Director.Bio }}</p>
+        </mat-card-content>
+
+        <mat-card-content *ngIf="movie.showSynopsis">
+            <p><strong>Synopsis:</strong> {{ movie.Genre.Description }}</p>
+        </mat-card-content>
+
     </mat-card>
-
-
 </div>

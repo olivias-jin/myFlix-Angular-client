@@ -1,57 +1,57 @@
+<button mat-raised-button (click)="goToMovieCard()" color="primary">
+  Go Back To Movie List
+</button>
+
+<button mat-raised-button *ngIf="isAuthenticated()" (click)="logout()">Log out</button>
+
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>Profile</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form>
-            <mat-form-field>
-                <input
-                  matInput
-                  [(ngModel)]="userData.Username"
-                  placeholder="Username"
-                  type="text"
-                  name="Username"
-                  required
-                >
-                </mat-form-field>
-                <mat-form-field>
-                <input
-                  matInput
-                  [(ngModel)]="userData.Password"
-                  type = "password"
-                  placeholder="Password"
-                  name="Password"
-                  required
-                >
-              </mat-form-field>
-              <mat-form-field>
-                <input
-                  matInput
-                  [(ngModel)]="userData.Email"
-                  type = "email"
-                  placeholder="Email"
-                  name="Email"
-                  required
-                >
-              </mat-form-field>
-              <mat-form-field>
-                <input
-                  matInput
-                  [(ngModel)]="userData.Birthday"
-                  type = "date"
-                  placeholder="Birthday"  
-                  name="Birthday"
-                >
-              </mat-form-field>
-        </form>
-        <mat-card-actions>
-            <button
-            mat-raised-button
-            (click)="updateUserProfile()"
-            color="primary"> Update Profile
-        </button>
-        </mat-card-actions>
-    </mat-card-content>
+  <mat-card-header>
+    <mat-card-title>Profile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="Birthday" name="Birthday" required>
+      </mat-form-field>
+    </form>
 
+    <!-- Favorite Movies Section -->
+    <div *ngIf="favoriteMovies.length > 0">
+      <h3>Your Favorite Movies:</h3>
+      <ul>
+        <li *ngFor="let movie of getFavoriteMoviesDetails()">
+          <!-- Check if movie object exists and display its details -->
+          <div *ngIf="movie">
+            <div>Movie Title: {{ movie?.Title || 'N/A' }}</div>
+            <div>Release Year: {{ movie?.Year || 'N/A' }}</div>
+            <div>
+              <img *ngIf="movie?.ImageUrl" [src]="movie?.ImageUrl" alt="movie image">
+            </div>
+          </div>
+          <div *ngIf="!movie">
+            <p>Movie details are not available.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
 
+    <div *ngIf="favoriteMovies.length === 0">
+      <p>You have no favorite movies.</p>
+    </div>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="updateUserProfile()" color="primary">
+        Update Profile
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
 </mat-card>

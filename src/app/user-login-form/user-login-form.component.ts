@@ -24,7 +24,7 @@ export class UserLoginFormComponent implements OnInit {
   goToMovieCard(): void {
     this.router.navigate(['/movie-card']);
   }
-  
+
   ngOnInit(): void { }
 
   loginUser(): void {
@@ -33,6 +33,12 @@ export class UserLoginFormComponent implements OnInit {
         // store the user data and token in localstorage
         localStorage.setItem('user', result.user.Username);
         localStorage.setItem('token', result.token);
+
+        // Store favorite movies 
+        const favoriteMovies = localStorage.getItem('favoriteMovies');
+        if(favoriteMovies) {
+          localStorage.setItem('favoriteMovies', favoriteMovies);
+        }
 
         // Close the dialog
         this.dialogRef.close();
