@@ -57,6 +57,8 @@ The application can be deployed using GitHub Pages.
 3. Browse Movies: Explore a wide range of movies and view details like genre, director, etc.
 4. Manage Profile: Update your user information, add/remove favorite movies, or delete your account.
 
-
+## TypeDoc
+Please see the details to Create documentation for Angular app using TypeDoc.
+[TypeDoc](https://typedoc.org/index.html)
 
 
