@@ -90,7 +90,7 @@ export class MovieCardComponent implements OnInit {
 
   // Add favorite movies
   addFavorite(movie: any): void {
-    this.fetchApiData.addFavoriteMovie(movie._id).subscribe(
+    this.fetchApiData.addFavoriteMovie(movie.Title).subscribe(
       (resp: any) => {
         // Add the newly added movie to the favoriteMovies array
         this.favoriteMovies.push(movie._id);
@@ -104,7 +104,7 @@ export class MovieCardComponent implements OnInit {
 
   // remove favorite movies
   deleteFavorite(movie: any): void {
-    this.fetchApiData.deleteFavoriteMovie(movie._id).subscribe(
+    this.fetchApiData.deleteFavoriteMovie(movie.Title).subscribe(
       (resp: any) => {
         this.favoriteMovies = this.favoriteMovies.filter(id => id !== movie._id);
 
