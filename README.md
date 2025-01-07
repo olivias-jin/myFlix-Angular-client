@@ -1,59 +1,62 @@
-# MyFlixAngularClient
+# My Flix Angular Client
+Welcome to the Angular Movie App, a responsive web application built using Angular. This app allows users to browse movies, register an account, log in, and manage their profile.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Live Link: https://olivias-jin.github.io/myFlix-Angular-client/
 
-## Development server
+# Table of Contents
+1. [Project Feature](#project-feature)
+2. [Technologies](#technologies)
+3. [Setup Instructions](#setup-instructions)
+4. [Usage](#usage)
 
-To start a local development server, run:
+## Project Feature
+- User Registration and Login.
+- Fetch data from a movie API.
+- Display a list of movies, details about each movie, director, and genre.
+- Add or remove movies from your list of favorites.
+- Update user profile or delete account.
+- Fully responsive design for both desktop and mobile devices.
 
+## Technologies 
+- Frontend Framework: Angular
+- UI Components: Angular Material
+- CSS Styling: SCSS
+- Backend API: Movie API (built separately)
+- Deployment: GitHub Pages
+
+## Setup Instructions
+*Prerequisites*
+Make sure you have the following installed:
+- [Node.js (v12 or above)](https://nodejs.org/en)
+- [Angular CLI](https://v17.angular.io/cli)
+
+### Clone the Repository
 ```bash
-ng serve
+git clone https://github.com/<your-username>/<your-repository>.git
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Install Dependencies Navigate into the project directory and install the necessary dependencies:
 ```bash
-ng generate component component-name
+cd <your-repository>
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+### Running the Application Locally
+To run the application locally, use the following command:
 ```bash
-ng generate --help
+ng serve --open
 ```
+Navigate to http://localhost:4200/ in your web browser. The app will automatically reload if you make any changes to the source files.
 
-## Building
+### Deployment
+The application can be deployed using GitHub Pages.
 
-To build the project run:
+## Usage
+1. Register: Sign up by providing your details.
+2. Login: Use your credentials to log into the app.
+3. Browse Movies: Explore a wide range of movies and view details like genre, director, etc.
+4. Manage Profile: Update your user information, add/remove favorite movies, or delete your account.
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
