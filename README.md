@@ -61,6 +61,5 @@ The application can be deployed using GitHub Pages.
 Please see the details to Create documentation for Angular app using TypeDoc.
 [TypeDoc](https://typedoc.org/index.html)
 
-
 ## Kanban Board for Angular Project
 https://trello.com/b/sbB4yT4g/myflix-app
