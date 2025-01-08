@@ -11,6 +11,7 @@
     "predeploy": "ng build --configuration production --base-href /myFlix-Angular-client/",
     "deploy": "ng deploy --base-href /myFlix-Angular-client/"
   },
+  "homepage":"https://olivias-jin.github.io/myFlix-Angular-client/",
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.0.0",
