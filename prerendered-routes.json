@@ -1,0 +1,9 @@
+{
+  "routes": {
+    "/myFlix-Angular-client": {},
+    "/myFlix-Angular-client/movie-card": {},
+    "/myFlix-Angular-client/movies": {},
+    "/myFlix-Angular-client/user-profile": {},
+    "/myFlix-Angular-client/welcome": {}
+  }
+}
