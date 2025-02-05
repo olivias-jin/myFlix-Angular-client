@@ -1,0 +1,9 @@
+{
+  "routes": {
+    "/": {},
+    "/movie-card": {},
+    "/movies": {},
+    "/user-profile": {},
+    "/welcome": {}
+  }
+}
